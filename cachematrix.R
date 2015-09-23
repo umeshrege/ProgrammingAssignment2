@@ -11,6 +11,7 @@
 ## n = number of rows and columns of matrix
 ## x = numeric vector equivalent to n x n matrix
 ## inv = object to store inverse of matrix
+## Additional comments are inline in the code
 
 makeCacheMatrix<-function(n=numeric(),x=numeric()) {
 	inv<-NULL			## Initialize inv object to NULL
