@@ -1,10 +1,12 @@
 ## About cachematrix.R: It contains 2 function as described below and can be used to 
 ## calculate, cache and display inverse of n x n matrix.
-## Features: User can specify value of n (of n x n matrix), along with actual matrix values
-## Limitations: In the current version of the code, it does not check if the matrix provided
-## by user is numeric or non-numeric.
 ## Created by: Umesh Rege
 ## Date: 23 September, 2015
+## Features: 
+##	1. User can specify value of n (of n x n matrix), along with actual matrix values
+##	2. If user tries to define vector of type other than numeric, execution is halted
+##	3. If length of vector is greater or less than n x n (matrix size) execution is 
+##	   halted with appropriate error message
 ## About function makeCacheMatrix: The function takes 2 parameters 
 ## n = number of rows and columns of matrix
 ## x = numeric vector equivalent to n x n matrix
@@ -12,6 +14,22 @@
 
 makeCacheMatrix<-function(n=numeric(),x=numeric()) {
 	inv<-NULL			## Initialize inv object to NULL
+	
+	## Following IF condition checks if the vector is of type numeric only
+	## execution stops if vector is of any type other than numeric	
+
+	if(class(x) != "numeric") {	
+		stop("Only vector of type numeric is allowed")
+	}
+	
+	## Following IF condition checks if the length of the vector
+	## is equal to n*n (square matrix), if its false execution is stopped
+	## with appropriate message
+	
+	if(length(x) != n*n) {
+		stop("\n Number of elements required: ",n*n,"\n Number of elements provided: ",length(x))
+	}
+		
 	x<-matrix(x,nrow=n,ncol=n)	## Create matrix of size n x n with vector x
 	
 	set<-function(n,y) {		## The set() function which gives ability to change the matrix
